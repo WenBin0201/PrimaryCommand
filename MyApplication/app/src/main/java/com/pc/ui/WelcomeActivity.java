@@ -18,5 +18,7 @@ public class WelcomeActivity extends BaseActivity{
         setContentView(R.layout.view_welcomeactivity);
 
         //好好好爱好好好好好好好好好好爱护哦啊好哦啊哈哈
+        //好好好爱好好好好好好好好好好爱护哦啊好哦啊哈哈
     }
+
 }
