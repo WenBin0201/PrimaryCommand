@@ -1,5 +1,6 @@
 package com.pc;
 
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -26,5 +27,10 @@ public class BaseActivity extends AppCompatActivity{
     @Override
     protected void onDestroy() {
         super.onDestroy();
+    }
+
+    public void startPage(Class c){
+        Intent intent = new Intent(this,c);
+        startActivity(intent);
     }
 }

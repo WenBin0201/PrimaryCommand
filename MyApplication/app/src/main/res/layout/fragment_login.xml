@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:background="@color/buttons"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#333333"
+            android:text="二级指挥平台"
+            android:textSize="18sp"/>
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/project"
+        android:layout_marginTop="90dp"
+        android:id="@+id/imageView"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+
+    <RelativeLayout
+        android:id="@+id/rl_login"
+        android:layout_width="match_parent"
+        android:gravity="center_horizontal"
+        android:layout_centerInParent="true"
+        android:layout_height="wrap_content">
+
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/data2x"
+            android:id="@+id/imageView2"
+            android:layout_marginLeft="31dp"
+            android:layout_marginStart="31dp"
+            android:layout_alignTop="@+id/editText_yonghuming"
+            android:layout_alignLeft="@+id/editText_yonghuming"
+            android:layout_alignStart="@+id/editText_yonghuming" />
+        <!--请输入用户名-->
+        <EditText
+            android:id="@+id/editText_yonghuming"
+            android:layout_width="301dp"
+            android:layout_height="44dp"
+            android:layout_marginTop="49dp"
+            android:ems="10"
+            android:hint="请输入用户名"
+            android:inputType="textPersonName"
+            android:paddingLeft="80dp"
+            android:paddingStart="80dp"
+            android:textColor="#333333"
+            android:textColorHighlight="#B4DF87"
+            android:textColorHint="#a6a1a1"
+            android:typeface="serif" />
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/account2x"
+            android:id="@+id/imageView3"
+            android:layout_alignTop="@+id/editText_mima"
+            android:layout_alignLeft="@+id/imageView2"
+            android:layout_alignStart="@+id/imageView2" />
+        <!--请输入密码-->
+        <EditText
+            android:id="@+id/editText_mima"
+            android:layout_width="301dp"
+            android:layout_height="44dp"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:layout_marginTop="15dp"
+            android:textColor="#333333"
+            android:paddingLeft="80dp"
+            android:hint="请输入密码"
+            android:textColorHint="#a6a1a1"
+            android:typeface="serif"
+            android:layout_below="@+id/editText_yonghuming"
+            android:layout_alignLeft="@+id/editText_yonghuming"
+            android:layout_alignStart="@+id/editText_yonghuming" />
+
+    </RelativeLayout>
+
+
+
+        <!--登录按钮-->
+        <Button
+            android:id="@+id/bt_denglu"
+            android:text="登录"
+            android:layout_width="301dp"
+            android:layout_height="45dp"
+            android:typeface="serif"
+            android:textColor="#ffffff"
+            android:textSize="20dp"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/button_shape"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="50dp"
+            />
+</RelativeLayout>
