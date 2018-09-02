@@ -80,12 +80,12 @@ public class DailyFragment1 extends BaseFragment implements View.OnClickListener
         sp_war3_kemu.setOnItemSelectedListener(onItemSelectedListener);
         trainingWar1Datas = new ArrayList<>();
         staffListBeanList = new ArrayList<>();
-        adapterWar1Training = new AdapterWar1Training(getActivity(),trainingWar1Datas);
+        adapterWar1Training = new AdapterWar1Training(getBaseActivity(),trainingWar1Datas);
         lv_war3_info.setAdapter(adapterWar1Training);
-        adapterWar3Training = new AdapterWar3Training(getActivity(),staffListBeanList,"");
+        adapterWar3Training = new AdapterWar3Training(getBaseActivity(),staffListBeanList,"");
         lv_war3_content.setAdapter(adapterWar3Training);
         HttpManager.get_String(HttpManager.GET_COMBAT_TRAINING + "00" ,null,GET_COMBAT_TRAINING,callBack);
-        HttpManager.get_String(HttpManager.GET_MESSAGES + SPUtils.get(getActivity(),"department",""),null,GETMESSAGE,callBack);
+        HttpManager.get_String(HttpManager.GET_MESSAGES + SPUtils.get(getBaseActivity(),"department",""),null,GETMESSAGE,callBack);
     }
     @Override
     public void onClick(View view) {
@@ -116,7 +116,7 @@ public class DailyFragment1 extends BaseFragment implements View.OnClickListener
         HashSet h = new HashSet(spinnerLeibieData);
         spinnerLeibieData.clear();
         spinnerLeibieData.addAll(h);
-        ArrayAdapter<String> depsAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, spinnerLeibieData);
+        ArrayAdapter<String> depsAdapter = new ArrayAdapter<String>(getBaseActivity(), android.R.layout.simple_spinner_item, spinnerLeibieData);
         depsAdapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         sp_war3_leibie.setAdapter(depsAdapter);
 //        setSpinnerKemuAdapter(0);
@@ -129,7 +129,7 @@ public class DailyFragment1 extends BaseFragment implements View.OnClickListener
 //                SubjectCode = trainingDatas.get(i).getSubjectCode();
             }
         }
-        ArrayAdapter<String> depsAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, spinnerKemuData);
+        ArrayAdapter<String> depsAdapter = new ArrayAdapter<String>(getBaseActivity(), android.R.layout.simple_spinner_item, spinnerKemuData);
         depsAdapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         sp_war3_kemu.setAdapter(depsAdapter);
     }
@@ -168,7 +168,7 @@ public class DailyFragment1 extends BaseFragment implements View.OnClickListener
             try {
                 jb = new JSONObject(s);
                 if (!jb.getString("Message").equals("success")) {
-                    Toast.makeText(getActivity(), "访问失败：" + jb.getString("Data"), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getBaseActivity(), "访问失败：" + jb.getString("Data"), Toast.LENGTH_SHORT).show();
                     return;
                 }
                 switch (code){
@@ -192,12 +192,12 @@ public class DailyFragment1 extends BaseFragment implements View.OnClickListener
                             Type type=new TypeToken<List<TrainingWar2Bean>>(){}.getType();
                             trainingWar1Datas = gson.fromJson(jsonArray3.toString(),type);
                         }else {
-                            Toast.makeText(getActivity(),"暂无数据!!!",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getBaseActivity(),"暂无数据!!!",Toast.LENGTH_SHORT).show();
                         }
                         adapterWar1Training.notifyDataSetChanged(trainingWar1Datas);
                         break;
                     case POST_ADD_ALL_STAFF_COMBAT_TRAINING:
-                        Toast.makeText(getActivity(),"提交成功!!!",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getBaseActivity(),"提交成功!!!",Toast.LENGTH_SHORT).show();
 
                         break;
                     case GETMESSAGE:

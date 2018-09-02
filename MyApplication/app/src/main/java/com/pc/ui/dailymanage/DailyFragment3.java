@@ -54,7 +54,7 @@ public class DailyFragment3 extends BaseFragment implements View.OnClickListener
         sp_war1_techang = view.findViewById(R.id.sp_war1_techang);
         bt_war1_select.setOnClickListener(this);
         trainingWar1Datas = new ArrayList<>();
-        adapterWar1Training = new AdapterWar1Training(getActivity(),trainingWar1Datas);
+        adapterWar1Training = new AdapterWar1Training(getBaseActivity(),trainingWar1Datas);
         lv_war1.setAdapter(adapterWar1Training);
         HttpManager.get_String(HttpManager.GET_COMBAT_TRAINING + "02",null,GET_COMBAT_TRAINING,callBack);
     }
@@ -78,7 +78,7 @@ public class DailyFragment3 extends BaseFragment implements View.OnClickListener
         for (TrainingQualificationBean trainingQualificationBean : trainingDatas){
             spinnerData.add(trainingQualificationBean.getSubjectName());
         }
-        ArrayAdapter<String> depsAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, spinnerData);
+        ArrayAdapter<String> depsAdapter = new ArrayAdapter<String>(getBaseActivity(), android.R.layout.simple_spinner_item, spinnerData);
         depsAdapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         sp_war1_techang.setAdapter(depsAdapter);
     }
@@ -88,7 +88,7 @@ public class DailyFragment3 extends BaseFragment implements View.OnClickListener
             try {
                 JSONObject jb = new JSONObject(s);
                 if (!jb.getString("Message").equals("success")) {
-                    Toast.makeText(getActivity(), "访问失败：" + jb.getString("Data"), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getBaseActivity(), "访问失败：" + jb.getString("Data"), Toast.LENGTH_SHORT).show();
                     return;
                 }
                 switch (code) {
