@@ -13,7 +13,7 @@
             android:layout_height="wrap_content"
             android:textColor="#333333"
             android:layout_centerInParent="true"
-            android:text="系統管理"
+            android:text="系统管理"
             android:textSize="18sp"/>
 
         <LinearLayout
