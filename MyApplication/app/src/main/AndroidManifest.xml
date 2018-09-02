@@ -24,7 +24,6 @@
     <!--<uses-permission android:name="android.permission.GET_TASKS" />-->
     <!--//鉴权所需该权限获取进程列表-->
     <!--<uses-permission android:name="android.permission.CAMERA" />-->
-
     <!-- 这个权限用于进行网络定位-->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"></uses-permission>
     <!-- 这个权限用于访问GPS定位-->
@@ -59,6 +58,7 @@
     <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
     <uses-permission android:name="android.permission.BLUETOOTH"/>
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE"/>
     <application
         android:name="com.pc.ImApplication"
         android:allowBackup="true"

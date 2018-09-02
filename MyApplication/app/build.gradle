@@ -7,7 +7,7 @@ android {
         minSdkVersion 15
         targetSdkVersion 26
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.1.0"
         //64K 引用限制
         multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -40,4 +40,6 @@ dependencies {
     compile 'io.reactivex:rxjava:1.1.0'
     compile 'homhomlin.lib:apsts:1.8.0'
     compile 'com.android.support:multidex:1.0.1'
+    //OKGO网络请求
+    compile 'com.lzy.net:okgo:2.1.4'
 }

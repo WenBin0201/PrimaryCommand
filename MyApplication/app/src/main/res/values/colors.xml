@@ -5,5 +5,9 @@
     <color name="colorAccent">#FF4081</color>
     <color name="buttons">#00b5f7</color>
     <color name="textnormal">#adadad</color>
+    <color name="huise">#e4e4e4</color>
+    <color name="white">#fafafa</color>
+    <color name="black">#000000</color>
+    <color name="blue">#ec21abf1</color>
 
 </resources>

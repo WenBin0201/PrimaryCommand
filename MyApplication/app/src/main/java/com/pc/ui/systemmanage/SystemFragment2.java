@@ -13,7 +13,7 @@ import com.pc.R;
 public class SystemFragment2 extends BaseFragment {
     @Override
     public int getLayoutId() {
-        return R.layout.view_scenefragment1;
+        return R.layout.view_systemfragment2;
     }
 
     @Override

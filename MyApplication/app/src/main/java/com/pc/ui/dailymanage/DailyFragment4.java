@@ -13,7 +13,7 @@ import com.pc.R;
 public class DailyFragment4 extends BaseFragment {
     @Override
     public int getLayoutId() {
-        return R.layout.view_scenefragment1;
+        return R.layout.view_dailyfragment4;
     }
 
     @Override
