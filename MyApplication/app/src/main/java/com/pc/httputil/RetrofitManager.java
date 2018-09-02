@@ -1,6 +1,10 @@
 package com.pc.httputil;
 
 
+import com.pc.entity.LoginEntity;
+import com.pc.utils.GsonUtil;
+
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
@@ -32,7 +36,7 @@ public class RetrofitManager {
         builder.writeTimeout(10,TimeUnit.SECONDS);
         OkHttpClient client =  builder.build();
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://139.196.204.207:8046/")
+                .baseUrl("http://139.196.204.207:8032/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
@@ -46,5 +50,26 @@ public class RetrofitManager {
             RetrofitManager = new RetrofitManager();
         }
         return RetrofitManager;
+    }
+
+    public void login(Map<String,String> params, final CallBack callBack){
+        retrofitService.login(params).compose(TransformUtils.<String>defaultSchedulers())
+                .subscribe(new Subscriber<String>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        callBack.Fail(e.getMessage().toString());
+                    }
+
+                    @Override
+                    public void onNext(String s) {
+                        callBack.Success(GsonUtil.json2Obj(s, LoginEntity.class));
+
+                    }
+                });
     }
 }

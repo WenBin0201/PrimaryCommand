@@ -1,6 +1,12 @@
 package com.pc.httputil;
 
+import java.util.Map;
+
+import retrofit2.http.Body;
+import retrofit2.http.FieldMap;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Query;
 import rx.Observable;
 
@@ -19,4 +25,7 @@ public interface RetrofitService {
 
 //    http://api.map.baidu.com/routematrix/v2/driving?output=json&origins=31.329547,121.27888&destinations=31.2458333333333,121.6175&ak=IRkDCEToH3B7DgGkmuPQmvzdf6bnMU1K
 
+    @FormUrlEncoded
+    @POST("api/frads/PostUserLogin")
+    Observable<String> login(@FieldMap Map<String,String> map);
 }

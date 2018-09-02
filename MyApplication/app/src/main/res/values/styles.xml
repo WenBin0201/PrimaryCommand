@@ -37,4 +37,17 @@
         <item name="apTabUnderlineHeight">0px</item>
     </style>
 
+
+    <style name="WaitProgressDialogStyle1" parent="android:style/Theme.Dialog">
+        <!-- 无title -->
+        <item name="android:windowFrame">@null</item>
+        <!-- 边框 -->
+        <item name="android:windowIsFloating">true</item>
+        <!-- 是否浮现在activity之上 -->
+        <item name="android:windowIsTranslucent">true</item>
+        <!-- 背景透明 -->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!-- 蒙版- 模糊 -->
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
 </resources>

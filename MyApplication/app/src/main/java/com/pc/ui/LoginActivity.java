@@ -23,6 +23,8 @@ import java.util.Map;
 import okhttp3.Call;
 import okhttp3.Response;
 
+
+
 /**
  * Created by wenbinbin on 2018/9/1.
  */
@@ -50,6 +52,8 @@ public class LoginActivity extends BaseActivity{
                     Toast.makeText(LoginActivity.this,"请输入密码!!!",Toast.LENGTH_SHORT).show();
                     return;
                 }
+                showWaitProgress("正在登陆...");
+
                 OkGo.<String>post(HttpManager.LOGIN_INFO)
                         .params("UserName",userName)
                         .params("UserPwd",passWord)
@@ -57,6 +61,7 @@ public class LoginActivity extends BaseActivity{
 
                             @Override
                             public void onSuccess(String s, Call call, Response response) {
+                                hideWaitProgress();
                                 try{
                                     s = s.substring(1, s.length() - 1);
                                     s = s.replace("\\", "");
@@ -104,6 +109,7 @@ public class LoginActivity extends BaseActivity{
                                     }
 
                                 }catch (JSONException e){
+                                    hideWaitProgress();
                                     e.printStackTrace();
                                 }
                             }

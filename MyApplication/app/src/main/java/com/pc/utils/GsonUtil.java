@@ -1,5 +1,7 @@
 package com.pc.utils;
 
+import android.util.Log;
+
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -16,6 +18,7 @@ import java.util.List;
  */
 
 public class GsonUtil {
+
 
     private static Gson gson = new Gson();
     private static JsonParser parser = new JsonParser();
