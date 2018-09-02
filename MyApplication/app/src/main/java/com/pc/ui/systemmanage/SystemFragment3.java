@@ -41,7 +41,7 @@ public class SystemFragment3 extends BaseFragment {
     private static final int GET_VERSION_UPGRADE = 0;
     @Override
     public int getLayoutId() {
-        return R.layout.view_scenefragment3;
+        return R.layout.view_systemfragment3;
     }
 
     @Override
@@ -53,7 +53,8 @@ public class SystemFragment3 extends BaseFragment {
 
 
 
-    }  private HttpManager.OnOkGoResultCallBack callBack = new HttpManager.OnOkGoResultCallBack() {
+    }
+    private HttpManager.OnOkGoResultCallBack callBack = new HttpManager.OnOkGoResultCallBack() {
         @Override
         public void OnSuccess(String s, int code) {
             try{
@@ -85,7 +86,7 @@ public class SystemFragment3 extends BaseFragment {
                                     downloadApk(getBaseActivity(),ImApplication.bersionList.get(0));
                                 }
                             });
-                            setVersionUpgrade();
+//                            setVersionUpgrade();
                         }
                         break;
                 }
