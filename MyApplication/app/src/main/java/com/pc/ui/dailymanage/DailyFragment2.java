@@ -98,13 +98,13 @@ public class DailyFragment2 extends BaseFragment implements View.OnClickListener
         sp_name_datas = new ArrayList<>();
         sp_techang_datas = new ArrayList<>();
         trainingWar2Datas = new ArrayList<>();
-        adapterWarTraining = new AdapterWarTraining(getActivity(),trainingWar2Datas);
+        adapterWarTraining = new AdapterWarTraining(getBaseActivity(),trainingWar2Datas);
         lv_war2.setAdapter(adapterWarTraining);
         initData();
         getData("","01");
     }
     private void initData(){
-        HttpManager.get_String(HttpManager.GET_MESSAGES + SPUtils.get(getActivity(),"department",""),null,GETMESSAGE,callBack);
+        HttpManager.get_String(HttpManager.GET_MESSAGES + SPUtils.get(getBaseActivity(),"department",""),null,GETMESSAGE,callBack);
         HttpManager.get_String(HttpManager.GET_COMBAT_TRAINING + "01" ,null,GET_COMBAT_TRAINING,callBack);
     }
     public void getData(String strId,String strTrainingId){
@@ -133,7 +133,7 @@ public class DailyFragment2 extends BaseFragment implements View.OnClickListener
         if (spinnerData.size() != sp_name_datas.size()){
             spinnerData.remove(0);
         }
-        ArrayAdapter<String> depsAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, spinnerData);
+        ArrayAdapter<String> depsAdapter = new ArrayAdapter<String>(getBaseActivity(), android.R.layout.simple_spinner_item, spinnerData);
         depsAdapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         spinner.setAdapter(depsAdapter);
 
@@ -143,7 +143,7 @@ public class DailyFragment2 extends BaseFragment implements View.OnClickListener
         if (sp_techang_datas.size() != spinnerData.size()){
             spinnerData.remove(0);
         }
-        ArrayAdapter<String> depsAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, spinnerData);
+        ArrayAdapter<String> depsAdapter = new ArrayAdapter<String>(getBaseActivity(), android.R.layout.simple_spinner_item, spinnerData);
         depsAdapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         spinner.setAdapter(depsAdapter);
 
@@ -156,7 +156,7 @@ public class DailyFragment2 extends BaseFragment implements View.OnClickListener
             try {
                 JSONObject jb = new JSONObject(s);
                 if (!jb.getString("Message").equals("success")) {
-                    Toast.makeText(getActivity(), "访问失败：" + jb.getString("Data"), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getBaseActivity(), "访问失败：" + jb.getString("Data"), Toast.LENGTH_SHORT).show();
                     return;
                 }
                 switch (code){
@@ -183,7 +183,7 @@ public class DailyFragment2 extends BaseFragment implements View.OnClickListener
                         }
                         break;
                     case POST_ADD_STAFF_COMBAT_TRAINING:
-                        Toast.makeText(getActivity(),"添加成功!!!",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getBaseActivity(),"添加成功!!!",Toast.LENGTH_SHORT).show();
 //                        String strId = staffListBeanList.get(sp_name.getSelectedItemPosition()-1).get人员ID();
 //                        String strTrainingId = trainingDatas.get(sp_techang.getSelectedItemPosition()-1).getSubjectCode();
                         getData("","01");
@@ -243,11 +243,11 @@ public class DailyFragment2 extends BaseFragment implements View.OnClickListener
 
     private void AddTraining(){
         if (sp_add_name.getSelectedItemPosition() == 0){
-            Toast.makeText(getActivity(),"请选择人员",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getBaseActivity(),"请选择人员",Toast.LENGTH_SHORT).show();
             return;
         }
         if (sp_add_techang.getSelectedItemPosition() == 0){
-            Toast.makeText(getActivity(),"请选择特长",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getBaseActivity(),"请选择特长",Toast.LENGTH_SHORT).show();
             return;
         }
         String strId = staffListBeanList.get(sp_add_name.getSelectedItemPosition()-1).get人员ID();
@@ -267,8 +267,8 @@ public class DailyFragment2 extends BaseFragment implements View.OnClickListener
     }
 
     public void showDialog(){
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        LayoutInflater inflater = getActivity().getLayoutInflater();
+        AlertDialog.Builder builder = new AlertDialog.Builder(getBaseActivity());
+        LayoutInflater inflater = getBaseActivity().getLayoutInflater();
         final View view = inflater.inflate(R.layout.dialog_add_training, null);//获取自定义布局
         builder.setView(view);
         sp_add_name = view.findViewById(R.id.sp_add_name);
@@ -287,7 +287,7 @@ public class DailyFragment2 extends BaseFragment implements View.OnClickListener
      * 添加图片 可通过本地添加、拍照添加
      */
     protected void AddImageDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        AlertDialog.Builder builder = new AlertDialog.Builder(getBaseActivity());
         builder.setTitle("添加图片");
         builder.setIcon(R.drawable.project);
         builder.setCancelable(true); //不响应back按钮
@@ -310,7 +310,7 @@ public class DailyFragment2 extends BaseFragment implements View.OnClickListener
                                 File photoFile=createImgFile();
                                 // 判断版本大于等于7.0
                                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                                    photoUri = FileProvider.getUriForFile(getActivity(), "com.bobao.primarycommand.fileProvider", photoFile);
+                                    photoUri = FileProvider.getUriForFile(getBaseActivity(), "com.bobao.primarycommand.fileProvider", photoFile);
                                 } else {
                                     photoUri = Uri.fromFile(photoFile);
                                 }
@@ -345,7 +345,7 @@ public class DailyFragment2 extends BaseFragment implements View.OnClickListener
                     photoUri=data.getData();
                     //获取照片路径
                     String[] filePathColumn={MediaStore.Audio.Media.DATA};
-                    Cursor cursor=getActivity().getContentResolver().query(photoUri,filePathColumn,null,null,null);
+                    Cursor cursor=getBaseActivity().getContentResolver().query(photoUri,filePathColumn,null,null,null);
                     cursor.moveToFirst();
                     photoPath=cursor.getString(cursor.getColumnIndex(filePathColumn[0]));
                     cursor.close();
@@ -368,7 +368,7 @@ public class DailyFragment2 extends BaseFragment implements View.OnClickListener
         if(Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)){
             dir=Environment.getExternalStorageDirectory();
         }else{
-            dir = getActivity().getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+            dir = getBaseActivity().getExternalFilesDir(Environment.DIRECTORY_PICTURES);
         }
         File tempFile=new File(dir,fileName);
         try{
@@ -416,6 +416,6 @@ public class DailyFragment2 extends BaseFragment implements View.OnClickListener
     private void galleryAddPic(){
         Intent mediaScanIntent=new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
         mediaScanIntent.setData(photoUri);
-        getActivity().sendBroadcast(mediaScanIntent);
+        getBaseActivity().sendBroadcast(mediaScanIntent);
     }
 }

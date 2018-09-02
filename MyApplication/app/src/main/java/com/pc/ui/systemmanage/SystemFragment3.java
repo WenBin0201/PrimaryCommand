@@ -59,7 +59,7 @@ public class SystemFragment3 extends BaseFragment {
             try{
                 JSONObject jb  = new JSONObject(s);
                 if (!jb.getString("Message").equals("success")){
-                    Toast.makeText(getActivity(),"访问失败："+jb.getString("Data"),Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getBaseActivity(),"访问失败："+jb.getString("Data"),Toast.LENGTH_SHORT).show();
                     return;
                 }
                 JSONObject jsonObject;
@@ -72,9 +72,9 @@ public class SystemFragment3 extends BaseFragment {
                             Gson gson = new GsonBuilder().create();
                             Type type1=new TypeToken<List<VersionBean>>(){}.getType();
                             ImApplication.bersionList = gson.fromJson(jsonArray.toString(),type1);
-                            tv_text1.setText("当前版本：" + getLocalVersionName(getActivity()));
+                            tv_text1.setText("当前版本：" + getLocalVersionName(getBaseActivity()));
                             tv_text2.setText("最新版本：" + ImApplication.bersionList.get(0).getVersionName());
-                            if (getLocalVersionName(getActivity()).equals(ImApplication.bersionList.get(0).getVersionName())){
+                            if (getLocalVersionName(getBaseActivity()).equals(ImApplication.bersionList.get(0).getVersionName())){
                                 bt_upgrade_version.setBackgroundColor(getResources().getColor(R.color.huise));
                                 bt_upgrade_version.setEnabled(false);
                             }
@@ -82,7 +82,7 @@ public class SystemFragment3 extends BaseFragment {
                                 @Override
                                 public void onClick(View view) {
                                     //版本升级
-                                    downloadApk(getActivity(),ImApplication.bersionList.get(0));
+                                    downloadApk(getBaseActivity(),ImApplication.bersionList.get(0));
                                 }
                             });
                             setVersionUpgrade();
@@ -104,8 +104,8 @@ public class SystemFragment3 extends BaseFragment {
 
     private void setVersionUpgrade(){
         VersionBean versionBean = ImApplication.bersionList.get(0);
-        if (!versionBean.getVersionCode().equals(getLocalVersionCode(getActivity())) ||
-                !versionBean.getVersionName().equals(getLocalVersionName(getActivity()))){
+        if (!versionBean.getVersionCode().equals(getLocalVersionCode(getBaseActivity())) ||
+                !versionBean.getVersionName().equals(getLocalVersionName(getBaseActivity()))){
             int UpdateType = versionBean.getUpdateType();
             if (UpdateType == 0){//强制更新
                 showUpdateDialog1(versionBean);
@@ -118,7 +118,7 @@ public class SystemFragment3 extends BaseFragment {
      * 弹出提示更新的dialog
      */
     private void showUpdateDialog1(final VersionBean versionBean) {
-        AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
+        AlertDialog.Builder dialog = new AlertDialog.Builder(getBaseActivity());
         dialog.setCancelable(false);
         dialog.setTitle("版本更新提示");
         dialog.setMessage("檢查到有最新版本,请立即更新?");
@@ -126,7 +126,7 @@ public class SystemFragment3 extends BaseFragment {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 //从服务器端下载最新apk
-                downloadApk(getActivity(),versionBean);
+                downloadApk(getBaseActivity(),versionBean);
             }
         });
         dialog.show();
@@ -135,7 +135,7 @@ public class SystemFragment3 extends BaseFragment {
      * 弹出提示更新的dialog
      */
     private void showUpdateDialog(final VersionBean versionBean) {
-        AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
+        AlertDialog.Builder dialog = new AlertDialog.Builder(getBaseActivity());
         dialog.setCancelable(false);
         dialog.setTitle("版本更新提示");
         dialog.setMessage("检查到有最新版本,是否更新?");
@@ -150,7 +150,7 @@ public class SystemFragment3 extends BaseFragment {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 //从服务器端下载最新apk
-                downloadApk(getActivity(),versionBean);
+                downloadApk(getBaseActivity(),versionBean);
             }
         });
         dialog.show();
