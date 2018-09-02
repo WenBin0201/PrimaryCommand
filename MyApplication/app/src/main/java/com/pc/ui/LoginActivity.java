@@ -2,6 +2,7 @@ package com.pc.ui;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -44,11 +45,11 @@ public class LoginActivity extends BaseActivity{
             public void onClick(View v) {
                 String userName = editText_yonghuming.getText().toString().trim();
                 String passWord = editText_mima.getText().toString().toLowerCase();
-                if (userName == null){
+                if (TextUtils.isEmpty(userName)){
                     Toast.makeText(LoginActivity.this,"请输入用户名!!!",Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if (passWord == null){
+                if (TextUtils.isEmpty(passWord)){
                     Toast.makeText(LoginActivity.this,"请输入密码!!!",Toast.LENGTH_SHORT).show();
                     return;
                 }
